@@ -23,14 +23,14 @@ async function createWidget() {
   heading.font = Font.lightSystemFont(25);
   heading.textColor = new Color("#ffffff");
   
-  // Spacer between heading and launch date
+  // Spacer between heading and data
   listwidget.addSpacer(15);
   
-  // Fetch next launch date
-  let launch = await getNextPrice();
-  let price = getPrice(launch);
+  // Fetch price now
+  let now = await getNextPrice();
+  let price = getPrice(now);
 
-  // Add the launch time to the widget
+  // Add the price to the widget
   displayPrice(listwidget, price);
 
   // Return the created widget
@@ -47,12 +47,12 @@ async function getNextPrice() {
   // Execute the request and parse the response as json
   const response = await request.loadJSON();
 
-  // Return the returned launch data
+  // Return the returned data
   return response;
 }
 
 function getPrice(pData) {
-  // Parse launch date to new date object
+  // Parse data and return the price with 2 decimals
   const Price = pData.PriceWithTax * 100;
   return Price.toFixed(2);
 }
