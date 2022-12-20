@@ -5,6 +5,8 @@ Tämä on Scriptable widget jonka avulla saa pörssisähkön hinnan iOS laitteen
 - Mikäli hinta on yli 20c/kWh väri on punainen.
 - Mikäli hinta on 10-20c/kWh väri on sininen.
 
+![Sähkönhinta Widget](images/sahkonhinta_widget.jpg)
+
 ## Datalähde
 
 Widgetti käyttää datalähteenä [spot-hinta.fi](https://spot-hinta.fi). 
