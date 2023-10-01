@@ -58,24 +58,18 @@ function getPrice(pData) {
 }
 
 function displayPrice(stack, price) {
-  if (price > 0) {
     let pricestring = price + " c (sis. vero)";
     addDateText(stack, pricestring);
     if (price < 10) {
-      // Set new background color
-      stack.backgroundColor = new Color("#008000");
+        // Set new background color
+        stack.backgroundColor = new Color("#008000");
     } else if (price > 20) {
-      // Set new background color
-      stack.backgroundColor = new Color("#EE4B2B");
+        // Set new background color
+        stack.backgroundColor = new Color("#EE4B2B");
     } else {
-      // Set new background color
-      stack.backgroundColor = new Color("#0000FF");
+        // Set new background color
+        stack.backgroundColor = new Color("#0000FF");
     }
-  } else {
-    // Set new background color
-    stack.backgroundColor = new Color("#000000");
-    addDateText(stack, "No price given");
-  }
 }
 
 function addDateText(stack, text) {
