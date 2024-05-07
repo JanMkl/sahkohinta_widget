@@ -20,15 +20,15 @@ async function createWidget() {
   // Add widget heading
   let heading = listwidget.addText("Sähkö nyt:");
   heading.centerAlignText();
-  heading.font = Font.lightSystemFont(25);
+  heading.font = Font.lightSystemFont(20);
   heading.textColor = new Color("#ffffff");
   
   // Spacer between heading and data
   listwidget.addSpacer(15);
   
   // Fetch price now
-  let now = await getNextPrice();
-  let price = getPrice(now);
+  let now = await getPriceNow();
+  let price = formatPrice(now);
 
   // Add the price to the widget
   displayPrice(listwidget, price);
@@ -37,7 +37,7 @@ async function createWidget() {
   return listwidget;
 }
 
-async function getNextPrice() {
+async function getPriceNow() {
   // Query url
   const url = "https://api.spot-hinta.fi/JustNow";
 
@@ -51,7 +51,7 @@ async function getNextPrice() {
   return response;
 }
 
-function getPrice(pData) {
+function formatPrice(pData) {
   // Parse data and return the price with 2 decimals
   const Price = pData.PriceWithTax * 100;
   return Price.toFixed(2);
@@ -59,22 +59,22 @@ function getPrice(pData) {
 
 function displayPrice(stack, price) {
     let pricestring = price + " c (sis. vero)";
-    addDateText(stack, pricestring);
+    addTextElement(stack, pricestring);
     if (price < 10) {
-        // Set new background color
+        // Set background color green
         stack.backgroundColor = new Color("#008000");
     } else if (price > 20) {
-        // Set new background color
+        // Set background color red
         stack.backgroundColor = new Color("#EE4B2B");
     } else {
-        // Set new background color
+        // Set background color blue
         stack.backgroundColor = new Color("#0000FF");
     }
 }
 
-function addDateText(stack, text) {
-  let dateText = stack.addText(text);
-  dateText.centerAlignText();
-  dateText.font = Font.semiboldSystemFont(20);
-  dateText.textColor = new Color("#ffffff");
+function addTextElement(stack, text) {
+  let stackText = stack.addText(text);
+  stackText.centerAlignText();
+  stackText.font = Font.semiboldSystemFont(20);
+  stackText.textColor = new Color("#ffffff");
 }
